@@ -27,7 +27,16 @@ namespace oopFinalProjecy
         }
 
 
+        // These Aren't Completely Right but just wanted a template down
+        public static Books operator ==(Books book1,  Books book2)
+        {
+            return book1 == book2;
+        }
 
+        public static Books operator !=(Books book1, Books book2)
+        {
+            return book1 != book2;
+        }
 
     }
 }
