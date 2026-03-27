@@ -8,6 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// <summary>
+/// Object Orientated Programming - Final Project
+/// </summary>
+/// 
+/// <author> Evan Wall, John Tran </author>
+/// <date> March 26th, 2026 </date>
+/// <class> Object Orientated Programming </class>
+
 namespace oopFinalProjecy
 {
     public partial class Form1 : Form
