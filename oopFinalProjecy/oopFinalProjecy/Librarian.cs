@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,22 +9,16 @@ namespace oopFinalProjecy
 {
     internal sealed class Librarian : User
     {
-        int BorrowLimit; // No Borrow Limit
-
         public Librarian()
         {
             // Default, does nothing
         }
 
-        public Librarian(int BorrowLimit)
+        public Librarian(string name, string role)
+            : base(name, role) 
         {
             // Overloaded, will just call base.
         }
-
-
-
-
-
 
     }
 }
