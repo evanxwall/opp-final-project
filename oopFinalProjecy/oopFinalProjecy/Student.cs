@@ -8,18 +8,19 @@ namespace oopFinalProjecy
 {
     internal class Student : User
     {
-        int BorrowLimit = 5; // Will default to 5
+        public int BorrowLimit { get; set; } = 5; // Will default to 5
 
-        int BooksBorrowed = 0; // Will increase as books are borrowed
+        public int BooksBorrowed { get; set; } = 0; // Will increase as books are borrowed
 
         public Student()
         {
-            // Default, does nothing
+            
         }
 
-        public Student(int br)
+        public Student(string name, string role)
+            : base(name, role) // UserID is not needed since this will call base constructor which generates one
         {
-            // Overloaded, will Call base
+            // BorrowLimit and Booksborrowed already have defaults so no need to called them here
         }
 
     }
