@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace oopFinalProjecy
 {
-    internal interface IBorrowable
+    public interface IBorrowable
     {
         void Borrow(User user); // Doesnt Return Anything
         void Return(User user); // Doesnt Return Anything
