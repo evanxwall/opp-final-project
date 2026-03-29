@@ -6,27 +6,35 @@ using System.Threading.Tasks;
 
 namespace oopFinalProjecy
 {
-    internal abstract class User
+    public abstract class User
     {
-        string Name { get; set; }
+        public string Name { get; set; }
 
-        int UserId { get; set; }
+        public int UserId { get; set; }
 
-        string Role { get; set; }
+        public string Role { get; set; }
 
-        // BookList MyBooks will need to be added here
+        List<Books> MyBooks { get; set; }
 
         public User()
         {
-            // Default Constructor, needs to Intialize Name and MyBooks
+            UserId = NewUserID(); // Gives new User a new ID
+            MyBooks = new List<Books>(); // Creates a New list of books for user
         }
 
-        public User(string name, int userId)
+        public User(string name, string role) : this()
         {
-            // Sends Name and Role only, calls the default
+            Name = name; // Sets user name
+            Role = role; // Sets user role
         }
 
-
+        static int NewUserID()
+        {
+            int i = 0;
+            return i + 1;
+            // This will be redone in a better
+            // non hard coded way later
+        }
 
     }
 }
