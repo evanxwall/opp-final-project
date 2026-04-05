@@ -20,9 +20,31 @@ namespace oopFinalProjecy
 {
     public partial class Form1 : Form
     {
+        
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            List<Books> availableBooks = new List<Books>();
+            List<User> users = new List<User>();
+
+            users.Add(new Student("Chad", "Student"));
+            users.Add(new Teacher("Brad", "Teacher"));
+            users.Add(new Librarian("Thad", "Librarian"));
+
+            cmbUsers.DataSource = users;
+            cmbUsers.DisplayMember = "Name";
+
+
+            for (int i = 0; i <= 25; i++)
+            {
+                availableBooks.Add(new Books($"Title: {i}", $"Author: {i}"));
+            }
+
+            dgAvailable.DataSource = availableBooks;
         }
     }
 }
