@@ -14,7 +14,7 @@ namespace oopFinalProjecy
 
         public string Role { get; set; }
 
-        List<Books> MyBooks { get; set; }
+        public List<Books> MyBooks { get; set; }
 
         public User()
         {

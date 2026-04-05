@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace oopFinalProjecy
 {
-    internal class Books : IBorrowable
+    public class Books : IBorrowable
     {
         string Title { get; set; }
         string Author { get; set; }
@@ -40,8 +40,57 @@ namespace oopFinalProjecy
             return !(book1 == book2);
         }
 
-        public void Borrow(User user) => IsAvailable = false;
-        public void Return(User user) => IsAvailable = true;
+
+        #region Borrow() and Return() Methods
+        public void Borrow(User user)
+        {
+            if (!IsAvailable)
+            {
+                throw new Exception("The book is currently out");
+            }
+
+            IsAvailable = false;
+            user.MyBooks.Add(this);
+
+            if (user is Student student)
+            {
+                student.BooksBorrowed++;
+            }
+
+            if (user is Teacher teacher)
+            {
+                teacher.BooksBorrowed++;
+            }
+
+        }
+
+        public void Return(User user)
+        {
+            if (!user.MyBooks.Contains(this))
+            {
+                throw new Exception($"This {user.Role} did not borrow this book.");
+            }
+
+            IsAvailable = true;
+            user.MyBooks.Remove(this);
+
+            if (user is Student student)
+            {
+                student.BooksBorrowed--;
+            }
+
+            if (user is Teacher teacher)
+            {
+                teacher.BooksBorrowed--;
+            }
+
+        }
+
+
+        #endregion
+
+
+
 
     }
 }
