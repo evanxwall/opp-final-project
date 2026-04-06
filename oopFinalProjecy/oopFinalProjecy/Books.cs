@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace oopFinalProjecy
 {
     public class Books : IBorrowable
     {
-        string Title { get; set; }
-        string Author { get; set; }
-        bool IsAvailable { get; set; } = true;
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public bool IsAvailable { get; set; } = true;
 
         public Books()
         {
@@ -68,7 +69,8 @@ namespace oopFinalProjecy
         {
             if (!user.MyBooks.Contains(this))
             {
-                throw new Exception($"This {user.Role} did not borrow this book.");
+                MessageBox.Show($"This {user.Role} did not borrow this book.");
+                return;
             }
 
             IsAvailable = true;

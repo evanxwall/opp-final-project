@@ -73,6 +73,7 @@
             this.btnReturnBook.TabIndex = 3;
             this.btnReturnBook.Text = "Return Book";
             this.btnReturnBook.UseVisualStyleBackColor = true;
+            this.btnReturnBook.Click += new System.EventHandler(this.btnReturnBook_Click);
             // 
             // btnAddBook
             // 
@@ -99,6 +100,7 @@
             this.cmbUsers.Name = "cmbUsers";
             this.cmbUsers.Size = new System.Drawing.Size(121, 21);
             this.cmbUsers.TabIndex = 6;
+            this.cmbUsers.SelectedIndexChanged += new System.EventHandler(this.cmbUsers_SelectedIndexChanged);
             // 
             // Form1
             // 

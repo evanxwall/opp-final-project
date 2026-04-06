@@ -44,6 +44,7 @@ namespace oopFinalProjecy
                 availableBooks.Add(new Books($"Title: {i}", $"Author: {i}"));
             }
 
+            dgAvailable.DataSource = null;
             dgAvailable.DataSource = availableBooks;
         }
 
@@ -56,13 +57,31 @@ namespace oopFinalProjecy
 
                 selectedBook.Borrow(selectedUser);
 
-                dgBorrowed = null;
+                dgBorrowed.DataSource = null;
                 dgBorrowed.DataSource = selectedUser.MyBooks;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnReturnBook_Click(object sender, EventArgs e)
+        {
+            Books selectedBook = dgBorrowed.CurrentRow.DataBoundItem as Books;
+            User selectedUser = cmbUsers.SelectedItem as User;
+
+            selectedBook.Return(selectedUser);
+
+            dgBorrowed.DataSource = null;
+            dgBorrowed.DataSource = selectedUser.MyBooks;
+
+
+        }
+
+        private void cmbUsers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnAddBook.Enabled = cmbUsers.SelectedItem is Librarian;
         }
     }
 }
