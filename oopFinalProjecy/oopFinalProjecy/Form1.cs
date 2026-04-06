@@ -12,8 +12,8 @@ using System.Windows.Forms;
 /// Object Orientated Programming - Final Project
 /// </summary>
 /// 
-/// <author> Evan Wall, John Tran </author>
-/// <date> March 26th, 2026 </date>
+/// <author> Evan Wall, John Tran         </author>
+/// <date> March 26th, 2026               </date>
 /// <class> Object Orientated Programming </class>
 
 namespace oopFinalProjecy
@@ -69,9 +69,6 @@ namespace oopFinalProjecy
                 
                 selectedBook.Borrow(selectedUser);
 
-                dgAvailable.DataSource = null;
-                dgAvailable.DataSource = availableBooks;
-
                 dgBorrowed.DataSource = null;
                 dgBorrowed.DataSource = selectedUser.MyBooks;
             }
@@ -90,6 +87,12 @@ namespace oopFinalProjecy
             if (selectedBook == null) 
             {
                 MessageBox.Show("Plese selected a book to return");
+                return;
+            }
+
+            if (!selectedUser.MyBooks.Contains(selectedBook))
+            {
+                MessageBox.Show($"This {selectedUser.Role} did not borrow this book.");
                 return;
             }
             selectedBook.Return(selectedUser);
