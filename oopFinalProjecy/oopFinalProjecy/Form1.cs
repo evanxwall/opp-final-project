@@ -20,7 +20,10 @@ namespace oopFinalProjecy
 {
     public partial class Form1 : Form
     {
-        
+
+        List<Books> availableBooks = new List<Books>();
+        List<User> users = new List<User>();
+
         public Form1()
         {
             InitializeComponent();
@@ -28,8 +31,6 @@ namespace oopFinalProjecy
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            List<Books> availableBooks = new List<Books>();
-            List<User> users = new List<User>();
 
             users.Add(new Student("Chad", "Student"));
             users.Add(new Teacher("Brad", "Teacher"));
@@ -76,12 +77,50 @@ namespace oopFinalProjecy
             dgBorrowed.DataSource = null;
             dgBorrowed.DataSource = selectedUser.MyBooks;
 
-
         }
 
         private void cmbUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnAddBook.Enabled = cmbUsers.SelectedItem is Librarian;
+            txtBookTitle.Enabled = cmbUsers.SelectedItem is Librarian;
+            txtBookAuthor.Enabled = cmbUsers.SelectedItem is Librarian;
         }
+
+
+        #region btnAddBook_Click Method
+        private void btnAddBook_Click(object sender, EventArgs e)
+        {
+            User selectedUser = cmbUsers.SelectedItem as User;
+
+            if (!(selectedUser is Librarian))
+            {
+                MessageBox.Show($"{selectedUser.Name} must be a Librarian to add a book");
+                return;
+            }
+
+            string bookTitle = txtBookTitle.Text;
+            string bookAuthor = txtBookAuthor.Text;
+
+            if (string.IsNullOrEmpty(bookTitle) || string.IsNullOrEmpty(bookAuthor))
+            {
+                MessageBox.Show("Book title and Author Required");
+                return;
+            }
+
+            Books newBook = new Books(bookTitle, bookAuthor);
+
+            if (availableBooks.Any(b => b == newBook))
+            {
+                MessageBox.Show($"{newBook.Title} Already exists");
+                return;
+            }
+            
+            availableBooks.Add(newBook);
+
+            dgAvailable.DataSource = null;
+            dgAvailable.DataSource = availableBooks;
+
+        }
+        #endregion
     }
 }
