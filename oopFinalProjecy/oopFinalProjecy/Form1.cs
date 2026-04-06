@@ -46,5 +46,23 @@ namespace oopFinalProjecy
 
             dgAvailable.DataSource = availableBooks;
         }
+
+        private void btnBorrowBook_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Books selectedBook = dgAvailable.CurrentRow.DataBoundItem as Books;
+                User selectedUser = cmbUsers.SelectedItem as User;
+
+                selectedBook.Borrow(selectedUser);
+
+                dgBorrowed = null;
+                dgBorrowed.DataSource = selectedUser.MyBooks;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
