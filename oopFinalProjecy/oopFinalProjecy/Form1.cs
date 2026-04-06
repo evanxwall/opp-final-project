@@ -49,6 +49,14 @@ namespace oopFinalProjecy
             dgAvailable.DataSource = availableBooks;
         }
 
+        private void cmbUsers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnAddBook.Enabled = cmbUsers.SelectedItem is Librarian;
+            txtBookTitle.Enabled = cmbUsers.SelectedItem is Librarian;
+            txtBookAuthor.Enabled = cmbUsers.SelectedItem is Librarian;
+        }
+
+        #region btnBorrowBook_Click Method
         private void btnBorrowBook_Click(object sender, EventArgs e)
         {
             try
@@ -77,6 +85,7 @@ namespace oopFinalProjecy
                 MessageBox.Show(ex.Message);
             }
         }
+        #endregion
 
         #region btnReturnBook_Click Method
         private void btnReturnBook_Click(object sender, EventArgs e)
@@ -102,14 +111,7 @@ namespace oopFinalProjecy
 
         }
         #endregion
-        private void cmbUsers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            btnAddBook.Enabled = cmbUsers.SelectedItem is Librarian;
-            txtBookTitle.Enabled = cmbUsers.SelectedItem is Librarian;
-            txtBookAuthor.Enabled = cmbUsers.SelectedItem is Librarian;
-        }
-
-
+        
         #region btnAddBook_Click Method
         private void btnAddBook_Click(object sender, EventArgs e)
         {
