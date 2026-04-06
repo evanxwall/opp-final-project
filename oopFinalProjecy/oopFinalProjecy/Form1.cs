@@ -46,7 +46,7 @@ namespace oopFinalProjecy
             }
 
             dgAvailable.DataSource = null;
-            dgAvailable.DataSource = availableBooks;
+            dgAvailable.DataSource = availableBooks.Where(b => b.IsAvailable).ToList();
         }
 
         private void cmbUsers_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,6 +77,9 @@ namespace oopFinalProjecy
                 
                 selectedBook.Borrow(selectedUser);
 
+                dgAvailable.DataSource = null;
+                dgAvailable.DataSource = availableBooks.Where(b => b.IsAvailable).ToList();
+
                 dgBorrowed.DataSource = null;
                 dgBorrowed.DataSource = selectedUser.MyBooks;
             }
@@ -105,6 +108,9 @@ namespace oopFinalProjecy
                 return;
             }
             selectedBook.Return(selectedUser);
+
+            dgAvailable.DataSource = null;
+            dgAvailable.DataSource = availableBooks.Where(b => b.IsAvailable).ToList();
 
             dgBorrowed.DataSource = null;
             dgBorrowed.DataSource = selectedUser.MyBooks;
