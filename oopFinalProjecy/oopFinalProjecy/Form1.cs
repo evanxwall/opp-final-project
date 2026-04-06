@@ -64,14 +64,35 @@ namespace oopFinalProjecy
                 Books selectedBook = dgAvailable.CurrentRow?.DataBoundItem as Books;
                 User selectedUser = cmbUsers.SelectedItem as User;
 
+                if (selectedBook == null)
+                {
+                    MessageBox.Show(
+                        "Plese select a book to borrow",
+                        "Select a Book",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                        );
+                    return;
+                }
+
                 if (selectedUser is Student student && student.BooksBorrowed >= student.BorrowLimit)
                 {
-                    MessageBox.Show($"{selectedUser.Name} Has reached their borrow limit ({student.BorrowLimit})");
+                    MessageBox.Show(
+                        $"{selectedUser.Name} Has reached their borrow limit ({student.BorrowLimit})",
+                        "Warning",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                        );
                     return;
                 }
                 else if (selectedUser is Teacher teacher && teacher.BooksBorrowed >= teacher.BorrowLimit)
                 {
-                    MessageBox.Show($"{selectedUser.Name} Has reached their borrow limit ({teacher.BorrowLimit})");
+                    MessageBox.Show(
+                        $"{selectedUser.Name} Has reached their borrow limit ({teacher.BorrowLimit})",
+                        "Warning",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                        );
                     return ;
                 }
                 
@@ -98,13 +119,23 @@ namespace oopFinalProjecy
 
             if (selectedBook == null) 
             {
-                MessageBox.Show("Plese selected a book to return");
+                MessageBox.Show(
+                        "Plese select a book to return",
+                        "Select a Book",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                        );
                 return;
             }
 
             if (!selectedUser.MyBooks.Contains(selectedBook))
             {
-                MessageBox.Show($"This {selectedUser.Role} did not borrow this book.");
+                MessageBox.Show(
+                    $"This {selectedUser.Role} did not borrow this book.",
+                    "Warning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                    );
                 return;
             }
             selectedBook.Return(selectedUser);
@@ -125,7 +156,12 @@ namespace oopFinalProjecy
 
             if (!(selectedUser is Librarian))
             {
-                MessageBox.Show($"{selectedUser.Name} must be a Librarian to add a book");
+                MessageBox.Show(
+                    $"{selectedUser.Name} must be a Librarian to add a book",
+                    "Warning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                    );
                 return;
             }
 
@@ -134,7 +170,12 @@ namespace oopFinalProjecy
 
             if (string.IsNullOrEmpty(bookTitle) || string.IsNullOrEmpty(bookAuthor))
             {
-                MessageBox.Show("Book title and Author Required");
+                MessageBox.Show(
+                        "Book title and author needed",
+                        "Book Information",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                        );
                 return;
             }
 
@@ -142,7 +183,12 @@ namespace oopFinalProjecy
 
             if (availableBooks.Any(b => b == newBook))
             {
-                MessageBox.Show($"{newBook.Title} Already exists");
+                MessageBox.Show(
+                    $"{newBook.Title} already exists",
+                    "Warning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                    );
                 return;
             }
             
