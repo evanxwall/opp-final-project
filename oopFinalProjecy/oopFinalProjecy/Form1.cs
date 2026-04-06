@@ -53,10 +53,24 @@ namespace oopFinalProjecy
         {
             try
             {
-                Books selectedBook = dgAvailable.CurrentRow.DataBoundItem as Books;
+                Books selectedBook = dgAvailable.CurrentRow?.DataBoundItem as Books;
                 User selectedUser = cmbUsers.SelectedItem as User;
 
+                if (selectedUser is Student student && student.BooksBorrowed >= student.BorrowLimit)
+                {
+                    MessageBox.Show($"{selectedUser.Name} Has reached their borrow limit ({student.BorrowLimit})");
+                    return;
+                }
+                else if (selectedUser is Teacher teacher && teacher.BooksBorrowed >= teacher.BorrowLimit)
+                {
+                    MessageBox.Show($"{selectedUser.Name} Has reached their borrow limit ({teacher.BorrowLimit})");
+                    return ;
+                }
+                
                 selectedBook.Borrow(selectedUser);
+
+                dgAvailable.DataSource = null;
+                dgAvailable.DataSource = availableBooks;
 
                 dgBorrowed.DataSource = null;
                 dgBorrowed.DataSource = selectedUser.MyBooks;
@@ -67,18 +81,24 @@ namespace oopFinalProjecy
             }
         }
 
+        #region btnReturnBook_Click Method
         private void btnReturnBook_Click(object sender, EventArgs e)
         {
-            Books selectedBook = dgBorrowed.CurrentRow.DataBoundItem as Books;
+            Books selectedBook = dgBorrowed.CurrentRow?.DataBoundItem as Books;
             User selectedUser = cmbUsers.SelectedItem as User;
 
+            if (selectedBook == null) 
+            {
+                MessageBox.Show("Plese selected a book to return");
+                return;
+            }
             selectedBook.Return(selectedUser);
 
             dgBorrowed.DataSource = null;
             dgBorrowed.DataSource = selectedUser.MyBooks;
 
         }
-
+        #endregion
         private void cmbUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnAddBook.Enabled = cmbUsers.SelectedItem is Librarian;
