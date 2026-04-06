@@ -40,7 +40,7 @@ namespace oopFinalProjecy
             cmbUsers.DisplayMember = "Name";
 
 
-            for (int i = 0; i <= 25; i++)
+            for (int i = 1; i <= 25; i++)
             {
                 availableBooks.Add(new Books($"Title: {i}", $"Author: {i}"));
             }
@@ -54,6 +54,12 @@ namespace oopFinalProjecy
             btnAddBook.Enabled = cmbUsers.SelectedItem is Librarian;
             txtBookTitle.Enabled = cmbUsers.SelectedItem is Librarian;
             txtBookAuthor.Enabled = cmbUsers.SelectedItem is Librarian;
+
+            User selectedUser = cmbUsers.SelectedItem as User;
+
+            // dgBorrowed.DataSource = null;
+            // dgBorrowed.DataSource = selectedUser.MyBooks;
+
         }
 
         #region btnBorrowBook_Click Method
@@ -128,23 +134,22 @@ namespace oopFinalProjecy
                 return;
             }
 
-            if (!selectedUser.MyBooks.Contains(selectedBook))
+            try
             {
-                MessageBox.Show(
-                    $"This {selectedUser.Role} did not borrow this book.",
-                    "Warning",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                    );
-                return;
+                selectedBook.Return(selectedUser);
+
+                dgAvailable.DataSource = null;
+                dgAvailable.DataSource = availableBooks.Where(b => b.IsAvailable).ToList();
+
+                dgBorrowed.DataSource = null;
+                dgBorrowed.DataSource = selectedUser.MyBooks;
+
             }
-            selectedBook.Return(selectedUser);
-
-            dgAvailable.DataSource = null;
-            dgAvailable.DataSource = availableBooks.Where(b => b.IsAvailable).ToList();
-
-            dgBorrowed.DataSource = null;
-            dgBorrowed.DataSource = selectedUser.MyBooks;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
 
         }
         #endregion
@@ -184,18 +189,29 @@ namespace oopFinalProjecy
             if (availableBooks.Any(b => b == newBook))
             {
                 MessageBox.Show(
-                    $"{newBook.Title} already exists",
+                    $"Book \"{newBook.Title}\" already exists",
                     "Warning",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                     );
                 return;
             }
-            
-            availableBooks.Add(newBook);
+            try
+            {
+                availableBooks.Add(newBook);
 
-            dgAvailable.DataSource = null;
-            dgAvailable.DataSource = availableBooks;
+                dgAvailable.DataSource = null;
+                dgAvailable.DataSource = availableBooks.Where(b => b.IsAvailable).ToList();
+
+                dgBorrowed.DataSource = null;
+                dgBorrowed.DataSource = selectedUser.MyBooks;
+
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
 
         }
         #endregion
