@@ -15,15 +15,17 @@ namespace oopFinalProjecy
 
         public Books()
         {
-            
+            // Default
         }
 
+        // Overloaded
         public Books(string title, string author)
         {
             Title = title;
             Author = author;
         }
 
+        #region == and != Overrides
         public static bool operator ==(Books book1,  Books book2)
         {
             if (ReferenceEquals(book1, book2)) 
@@ -39,7 +41,7 @@ namespace oopFinalProjecy
         {
             return !(book1 == book2);
         }
-
+        #endregion
 
         #region Borrow() and Return() Methods
         public void Borrow(User user)

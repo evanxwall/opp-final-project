@@ -16,24 +16,24 @@ namespace oopFinalProjecy
 
         public List<Books> MyBooks { get; set; }
 
+        // Default
         public User()
         {
-            UserId = NewUserID(); // Gives new User a new ID
-            MyBooks = new List<Books>(); // Creates a New list of books for user
+            UserId = NewUserID(); 
+            MyBooks = new List<Books>(); 
         }
 
+        // Overloaded, Calls Base
         public User(string name, string role) : this()
         {
-            Name = name; // Sets user name
-            Role = role; // Sets user role
+            Name = name; 
+            Role = role; 
         }
 
         static int NewUserID()
         {
             int i = 0;
             return i + 1;
-            // This will be redone in a better
-            // non hard coded way later
         }
 
     }

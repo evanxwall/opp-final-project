@@ -11,13 +11,13 @@ namespace oopFinalProjecy
     {
         public Librarian()
         {
-            
+            // Default
         }
 
         public Librarian(string name, string role)
             : base(name, role) 
         {
-            
+            // Overloaded, Calls Base
         }
 
     }

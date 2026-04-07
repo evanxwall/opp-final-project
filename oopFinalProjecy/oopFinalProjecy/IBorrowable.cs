@@ -8,7 +8,7 @@ namespace oopFinalProjecy
 {
     public interface IBorrowable
     {
-        void Borrow(User user); // Doesnt Return Anything
-        void Return(User user); // Doesnt Return Anything
+        void Borrow(User user); 
+        void Return(User user); 
     }
 }

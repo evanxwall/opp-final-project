@@ -14,13 +14,13 @@ namespace oopFinalProjecy
 
         public Student()
         {
-            
+            // Default
         }
 
         public Student(string name, string role)
             : base(name, role) 
         {
-            
+            // Overloaded, Calls Base
         }
 
     }

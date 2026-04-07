@@ -49,6 +49,7 @@ namespace oopFinalProjecy
             dgAvailable.DataSource = availableBooks.Where(b => b.IsAvailable).ToList();
         }
 
+        #region ComboBox SelectedIndexChanged() Method
         private void cmbUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnAddBook.Enabled = cmbUsers.SelectedItem is Librarian;
@@ -61,6 +62,7 @@ namespace oopFinalProjecy
             dgBorrowed.DataSource = selectedUser.MyBooks.ToList();
 
         }
+        #endregion
 
         #region btnBorrowBook_Click Method
         private void btnBorrowBook_Click(object sender, EventArgs e)
@@ -208,8 +210,7 @@ namespace oopFinalProjecy
             Books newBook = new Books(bookTitle, bookAuthor);
 
             if (availableBooks.Any(b => b == newBook))
-            {
-                new Exception 
+            { 
                 MessageBox.Show(
                     $"Book \"{newBook.Title}\" already exists",
                     "Warning",
