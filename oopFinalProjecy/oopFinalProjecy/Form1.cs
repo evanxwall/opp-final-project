@@ -57,7 +57,7 @@ namespace oopFinalProjecy
 
             User selectedUser = cmbUsers.SelectedItem as User;
 
-            // dgBorrowed.DataSource = null;
+            dgBorrowed.DataSource = null;
             dgBorrowed.DataSource = selectedUser.MyBooks.ToList();
 
         }
@@ -74,6 +74,17 @@ namespace oopFinalProjecy
                 {
                     MessageBox.Show(
                         "Plese select a book to borrow",
+                        "Select a Book",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                        );
+                    return;
+                }
+
+                if (!selectedBook.IsAvailable)
+                {
+                    MessageBox.Show(
+                        "This book is currently out, please select another book",
                         "Select a Book",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information
@@ -198,6 +209,7 @@ namespace oopFinalProjecy
 
             if (availableBooks.Any(b => b == newBook))
             {
+                new Exception 
                 MessageBox.Show(
                     $"Book \"{newBook.Title}\" already exists",
                     "Warning",

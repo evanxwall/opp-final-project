@@ -15,12 +15,11 @@ namespace oopFinalProjecy
 
         public Books()
         {
-            // Default
+            
         }
 
         public Books(string title, string author)
         {
-            // Overloaded
             Title = title;
             Author = author;
         }
@@ -45,10 +44,6 @@ namespace oopFinalProjecy
         #region Borrow() and Return() Methods
         public void Borrow(User user)
         {
-            if (!IsAvailable)
-            {
-                throw new Exception("The book is currently out");
-            }
 
             IsAvailable = false;
             user.MyBooks.Add(this);
@@ -86,7 +81,22 @@ namespace oopFinalProjecy
 
         #endregion
 
+        #region Equals() and GetHashCode() Methods
+        public override bool Equals(object obj)
+        {
+            if (obj is Books other)
+            {
+                return this.Title == other.Title &&
+                       this.Author == other.Author;
+            }
+            return false;
+        }
 
+        public override int GetHashCode()
+        {
+            return (Title + Author).GetHashCode();
+        }
+        #endregion
 
 
     }

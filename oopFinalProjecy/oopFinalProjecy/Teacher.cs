@@ -8,19 +8,18 @@ namespace oopFinalProjecy
 {
     public class Teacher : User
     {
-        public int BorrowLimit { get; set; } = 10; // Will default to 10
-
-        public int BooksBorrowed { get; set; } = 0; // Will increase as books are borrowed
+        public int BorrowLimit { get; set; } = 10; 
+        public int BooksBorrowed { get; set; } = 0; 
 
         public Teacher()
         {
-            // Default, does nothing
+            
         }
 
         public Teacher(string name, string role)
             : base(name, role) 
         {
-            // Overloaded, will Call base
+            
         }
 
     }
