@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace oopFinalProjecy
 {
-    internal class Teacher : User
+    public class Teacher : User
     {
         public int BorrowLimit { get; set; } = 10; // Will default to 10
 

@@ -134,6 +134,16 @@ namespace oopFinalProjecy
                 return;
             }
 
+            if (!selectedUser.MyBooks.Contains(selectedBook))
+            {
+                MessageBox.Show(
+                    $"{selectedUser.Name} Did not borrow this book",
+                    "Can't Return Book",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
                 selectedBook.Return(selectedUser);

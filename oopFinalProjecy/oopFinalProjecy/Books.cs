@@ -67,15 +67,7 @@ namespace oopFinalProjecy
 
         public void Return(User user)
         {
-            if (!user.MyBooks.Contains(this))
-            {
-                MessageBox.Show(
-                    $"{user.Name} Did not borrow this book",
-                    "Can't Return Book",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-            }
-                
+
             IsAvailable = true;
             user.MyBooks.Remove(this);
 
