@@ -58,7 +58,7 @@ namespace oopFinalProjecy
             User selectedUser = cmbUsers.SelectedItem as User;
 
             // dgBorrowed.DataSource = null;
-            // dgBorrowed.DataSource = selectedUser.MyBooks;
+            dgBorrowed.DataSource = selectedUser.MyBooks.ToList();
 
         }
 
